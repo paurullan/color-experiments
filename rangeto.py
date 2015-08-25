@@ -1,6 +1,9 @@
 import itertools
 from colour import Color
 
+MAX_FRAMES = 5
+CURRENT_FRAME = MAX_FRAMES
+
 WIDTH = 900
 HEIGHT = 900
 
@@ -33,7 +36,7 @@ def get_color():
     infinite_color = itertools.cycle(color_list)
     first = Color(next(infinite_color))
     second = Color(next(infinite_color))
-    steps = 30
+    steps = 16
     while True:
         first, second = second, Color(next(infinite_color))
         for c in first.range_to(second, steps):
@@ -45,6 +48,12 @@ def draw():
     screen.fill(background.web_color)
 
 get_color_call = get_color()
+
 def update():
-    new_color = next(get_color_call)
-    background.web_color = new_color.get_web()
+    global CURRENT_FRAME
+    if not CURRENT_FRAME:
+        new_color = next(get_color_call)
+        background.web_color = new_color.get_web()
+        CURRENT_FRAME = MAX_FRAMES
+    else:
+        CURRENT_FRAME -= 1
