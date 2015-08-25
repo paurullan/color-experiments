@@ -39,10 +39,6 @@ PURPLE #B10DC9
 def draw():
     SCREEN_COLOR = (colors.red, colors.green, colors.blue)
     screen.fill(SCREEN_COLOR)
-    moix.draw()
 
 def update():
-    moix.left += 2
-    if moix.left > WIDTH:
-        moix.left = 0
     colors.red = (colors.red + 1) % 255
