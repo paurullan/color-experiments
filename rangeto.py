@@ -31,7 +31,6 @@ PURPLE #B10DC9
 """
 
 def get_color():
-
     color_list = [c for c in color_list_text.split() if c.startswith("#")]
     infinite_color = itertools.cycle(color_list)
     first = Color(next(infinite_color))
@@ -43,17 +42,9 @@ def get_color():
             yield c
 
 def draw():
-    #SCREEN_COLOR = (background.red, background.green, background.blue)
-    #screen.fill(SCREEN_COLOR)
     screen.fill(background.web_color)
 
 get_color_call = get_color()
-
 def update():
-    global CURRENT_FRAME
-    if not CURRENT_FRAME:
-        new_color = next(get_color_call)
-        background.web_color = new_color.get_web()
-        CURRENT_FRAME = MAX_FRAMES
-    else:
-        CURRENT_FRAME -= 1
+    new_color = next(get_color_call)
+    background.web_color = new_color.get_hex()
