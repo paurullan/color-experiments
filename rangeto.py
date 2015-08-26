@@ -33,7 +33,6 @@ PURPLE #B10DC9
 def get_color():
     color_list = [c for c in color_list_text.split() if c.startswith("#")]
     infinite_color = itertools.cycle(color_list)
-    first = Color(next(infinite_color))
     second = Color(next(infinite_color))
     steps = 16
     while True:
