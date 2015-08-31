@@ -15,19 +15,17 @@ background.blue = 0
 
 # colrd.com/palette/22780/
 # http://clrs.cc/
+# http://colrd.com/gradient/22272/
 color_list_text = """
 Blue #0074D9
 Aqua #7FDBFF
 TEAL #39CCCC
-OLIVE #3D9970
-GREEN #2ECC40
-LIME #01FF70
 YELLOW #FFDC00
 ORANGE #FF851B
 RED #FF4136
-MAROON #85144b
 FUCHSIA #F012BE
 PURPLE #B10DC9
+MAROON #85144b
 """
 
 def get_color():
@@ -45,5 +43,11 @@ def draw():
 
 get_color_call = get_color()
 def update():
+    global CURRENT_FRAME
+    if CURRENT_FRAME:
+        CURRENT_FRAME -= 1
+        return
+    else:
+        CURRENT_FRAME = MAX_FRAMES
     new_color = next(get_color_call)
     background.web_color = new_color.get_hex()
